@@ -1,9 +1,9 @@
 { 
   imports = [ 
-    ./hardware-configuration.nix, 
-    ./modules/hyprland.nix, 
-    ./modules/hyprpaper.nix, 
-    ./modules/wayland.nix, 
+    ./hardware-configuration.nix
+    ./modules/hyprland.nix
+    ./modules/hyprpaper.nix 
+    ./modules/wayland.nix
     ./modules/waybar.nix 
   ]; 
 
