@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration with Hyprland, Hyprpaper, Wayland, and Waybar",
+  description = "NixOS configuration with Hyprland, Hyprpaper, Wayland, and Waybar";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
