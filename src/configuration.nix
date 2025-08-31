@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 { 
   imports = [ 
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
+    ./modules/nvidia.nix
     ./modules/hyprland.nix
     ./modules/hyprpaper.nix 
     ./modules/wayland.nix
