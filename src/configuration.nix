@@ -1,3 +1,4 @@
+{ config, pkgs, ... }:
 { 
   imports = [ 
     ./hardware-configuration.nix
@@ -8,7 +9,6 @@
   ]; 
 
   # Basic system settings 
-  system = "x86_64-linux"; 
   boot.loader.systemd-boot.enable = true; # Enable systemd-boot
   boot.loader.efi.canTouchEfiVariables = true; # Required for EFI systems
   networking.hostName = "neutron"; 
