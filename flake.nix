@@ -15,11 +15,6 @@
           system = "x86_64-linux";
           modules = [
             ./src/configuration.nix
-            ./src/modules/hyprland.nix
-            ./src/modules/hyprpaper.nix
-            ./src/modules/wayland.nix
-            ./src/modules/waybar.nix
-            ./src/hardware-configuration.nix
           ];
         };
       };
