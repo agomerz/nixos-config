@@ -9,10 +9,10 @@
       packages.default = with nixpkgs.legacyPackages.${system}; [
         # Add necessary packages here
       ];
-
+    }) // {
       nixosConfigurations = {
         neutron = nixpkgs.nixosSystem { # Match the hostname here
-          system = system;
+          system = "X86_64-linux";
           modules = [
             ./src/configuration.nix
             ./src/modules/hyprland.nix
@@ -23,5 +23,5 @@
           ];
         };
       };
-    });
+    };
 }
