@@ -11,8 +11,8 @@
       ];
     }) // {
       nixosConfigurations = {
-        neutron = nixpkgs.nixosSystem { # Match the hostname here
-          system = "X86_64-linux";
+        neutron = nixpkgs.lib.nixosSystem { # Match the hostname here
+          system = "x86_64-linux";
           modules = [
             ./src/configuration.nix
             ./src/modules/hyprland.nix
