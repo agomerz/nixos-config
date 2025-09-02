@@ -21,7 +21,7 @@
   ];
 
   # Home Manager needs a bit of information about you and the paths it should manage
-  home.stateVersion = "23.11"; # Please set to the version you installed
+  home.stateVersion = "25.11"; # Please set to the version you installed
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;

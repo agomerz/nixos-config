@@ -8,7 +8,7 @@
   time.timeZone = "America/New_York"; # Set your timezone
   
   # Set the state version
-  system.stateVersion = "23.11"; # Set to the NixOS version you're starting with
+  system.stateVersion = "25.11"; # Set to the NixOS version you're starting with
 
   # Enable SSH for remote access
   services.openssh.enable = true;
