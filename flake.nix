@@ -4,11 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, home-manager, ... }:
     flake-utils.lib.eachDefaultSystem (system: {
       packages.default = with nixpkgs.legacyPackages.${system}; [
         # Add necessary packages here
@@ -21,6 +23,14 @@
           modules = [
             ./src/hosts/vm/configuration.nix
             ./src/modules/common.nix
+            # Add home-manager as a module
+            home-manager.nixosModules.home-manager
+            {
+              # Home Manager configuration
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.andy = import ./src/home-manager/home.nix;
+            }
           ];
         };
         
@@ -30,6 +40,14 @@
           modules = [
             ./src/hosts/metal/configuration.nix
             ./src/modules/common.nix
+            # Add home-manager as a module
+            home-manager.nixosModules.home-manager
+            {
+              # Home Manager configuration
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.andy = import ./src/home-manager/home.nix;
+            }
           ];
         };
       };

@@ -6,6 +6,9 @@
   boot.loader.efi.canTouchEfiVariables = true; # Required for EFI systems
   networking.hostName = "neutron"; # Set your hostname
   time.timeZone = "America/New_York"; # Set your timezone
+  
+  # Set the state version
+  system.stateVersion = "23.11"; # Set to the NixOS version you're starting with
 
   # Enable SSH for remote access
   services.openssh.enable = true;
@@ -20,34 +23,13 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # Enable Hyprland (Wayland compositor)
-  programs.hyprland.enable = true;
-  
   # Keep X server for XWayland compatibility
   services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
   
-  # System packages 
+  # System packages (only include core packages here)
   environment.systemPackages = with pkgs; [ 
-    hyprland 
-    hyprpaper 
-    wayland 
-    waybar
-    vim 
+    wayland
     git
-    ghostscript 
-    neovim
-    kitty
-  ]; 
-  
-  # Optional: Create a systemd service for waybar if you want it to start automatically
-  systemd.user.services.waybar = {
-    description = "Waybar";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.waybar}/bin/waybar";
-      Restart = "on-failure";
-    };
-  };
+    vim
+  ];
 }
