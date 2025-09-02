@@ -20,7 +20,7 @@
   };
 
   swapDevices = [
-    { device = "LABEL=swap"; }
+    { device = "/dev/disk/by-label/swap"; }
   ];
 
   networking.useDHCP = lib.mkDefault true;
