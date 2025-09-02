@@ -25,19 +25,29 @@
   services.xserver.enable = true; 
   services.xserver.displayManager.startx.enable = true; 
   services.xserver.windowManager.hyprland.enable = true; 
-  services.wayland.enable = true; 
-  services.waybar.enable = true; 
-
+  # services.wayland.enable = true; # This is also not a valid service
+  
   # System packages 
   environment.systemPackages = with pkgs; [ 
     hyprland 
     hyprpaper 
     wayland 
-    waybar 
+    waybar  # Waybar is just installed as a package
     vim 
     git
     ghostscript 
     neovim
     kitty
   ]; 
+  
+  # Optional: Create a systemd service for waybar if you want it to start automatically
+  systemd.user.services.waybar = {
+    description = "Waybar";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+      Restart = "on-failure";
+    };
+  };
 }
