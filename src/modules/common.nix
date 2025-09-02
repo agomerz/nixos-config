@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   # Basic system settings
   boot.loader.systemd-boot.enable = true; # Enable systemd-boot
   boot.loader.efi.canTouchEfiVariables = true; # Required for EFI systems
@@ -21,18 +20,19 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # Enable necessary services 
-  services.xserver.enable = true; 
-  services.xserver.displayManager.startx.enable = true; 
-  services.xserver.windowManager.hyprland.enable = true; 
-  # services.wayland.enable = true; # This is also not a valid service
+  # Enable Hyprland (Wayland compositor)
+  programs.hyprland.enable = true;
+  
+  # Keep X server for XWayland compatibility
+  services.xserver.enable = true;
+  services.xserver.displayManager.startx.enable = true;
   
   # System packages 
   environment.systemPackages = with pkgs; [ 
     hyprland 
     hyprpaper 
     wayland 
-    waybar  # Waybar is just installed as a package
+    waybar
     vim 
     git
     ghostscript 
