@@ -9,7 +9,7 @@
   services.qemuGuest.enable = true;
   services.xserver.videoDrivers = [ "qxl" "virtio" ];
   boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_scsi" ];
-  environment.systemPackages = with nixpkgs.legacyPackages.${system}; [
+  environment.systemPackages = with pkgs; [
     spice-vdagent
   ];
 
