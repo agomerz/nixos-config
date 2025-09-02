@@ -48,7 +48,7 @@
     libinput
     wlr-randr
     glib # for gsettings
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     swaylock
     swayidle
   ];
