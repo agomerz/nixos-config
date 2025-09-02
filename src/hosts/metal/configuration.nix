@@ -1,12 +1,7 @@
 { config, pkgs, ... }:
 { 
   imports = [ 
-    /etc/nixos/hardware-configuration.nix
-    ./modules/nvidia.nix
-    ./modules/hyprland.nix
-    ./modules/hyprpaper.nix 
-    ./modules/wayland.nix
-    ./modules/waybar.nix 
+      ./hardware-configuration.nix
   ]; 
 
   # Basic system settings 
@@ -21,6 +16,14 @@
     extraGroups = [ "wheel" "networkmanager" ]; 
   }; 
 
+  networking.hostName = "neutron";
+  hardware.nvidia = {
+    modesetting.enable = true;
+    prime = {
+      offload.enable = true;
+    };
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
   # Enable necessary services 
   services.xserver.enable = true; 
   services.xserver.displayManager.startx.enable = true; 
@@ -35,8 +38,9 @@
     wayland 
     waybar 
     vim 
-    git 
+    git
     ghostscript 
-    neovim 
+    neovim
+    kitty
   ]; 
 }
