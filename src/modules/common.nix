@@ -23,13 +23,33 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # Keep X server for XWayland compatibility
+  # Add a display manager to start Hyprland automatically
   services.xserver.enable = true;
-  
+  services.xserver.displayManager.gdm.enable = true;  # Use GDM which works well with Wayland
+  services.xserver.displayManager.defaultSession = "hyprland";
+
+  # Make sure XWayland is enabled
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Enable other necessary services
+  security.polkit.enable = true;
+  hardware.opengl.enable = true;
+
   # System packages (only include core packages here)
   environment.systemPackages = with pkgs; [ 
     wayland
     git
     vim
+    # Add these packages
+    xwayland
+    libinput
+    wlr-randr
+    glib # for gsettings
+    gnome.adwaita-icon-theme
+    swaylock
+    swayidle
   ];
 }

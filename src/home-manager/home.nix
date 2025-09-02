@@ -6,6 +6,9 @@
     ./waybar.nix
   ];
 
+  # Ensure wallpaper directory exists
+  home.file."wallpapers/default.jpg".source = ./wallpapers/default.jpg;
+
   home.username = "andy";
   home.homeDirectory = "/home/andy";
   

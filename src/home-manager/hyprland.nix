@@ -3,7 +3,8 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = true; # Important for proper systemd integration
+    xwayland.enable = true; # Enable XWayland support
     settings = {
       general = {
         gaps_in = 5;
@@ -100,5 +101,19 @@
         "SUPER_SHIFT,0,movetoworkspace,10"
       ];
     };
+
+    # Make sure Hyprland starts some essential components
+    extraConfig = ''
+      # Execute your apps at launch
+      exec-once = waybar
+      exec-once = hyprpaper
+    '';
   };
+
+  # Add hyprpaper configuration
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = ${config.home.homeDirectory}/wallpapers/default.jpg
+    wallpaper = ,${config.home.homeDirectory}/wallpapers/default.jpg
+    ipc = off
+  '';
 }
