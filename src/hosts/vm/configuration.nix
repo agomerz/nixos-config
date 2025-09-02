@@ -4,7 +4,7 @@
       ./hardware-configuration.nix
   ]; 
 
-  virtualisation.qemu.guest.enable = true;
+  
   services.spice-vdagentd.enable = true;
   services.qemuGuest.enable = true;
   services.xserver.videoDrivers = [ "qxl" "virtio" ];
@@ -12,5 +12,4 @@
   environment.systemPackages = with pkgs; [
     spice-vdagent
   ];
-
 }
