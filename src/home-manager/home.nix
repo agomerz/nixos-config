@@ -41,48 +41,48 @@
   };
 
   # Add this to your existing home.nix configuration
-  home.file.".config/rofi/config.rasi".text = ''
-    configuration {
-      modi: "drun,run,window,ssh";
-      font: "JetBrains Mono 12";
-      terminal: "xterm";
-      drun-display-format: "{name}";
-      location: 0;
-      disable-history: false;
-      hide-scrollbar: true;
-      display-drun: " Apps ";
-      display-run: " Run ";
-      display-window: " Windows ";
-      display-ssh: " SSH ";
-      sidebar-mode: true;
-    }
+  # home.file.".config/rofi/config.rasi".text = ''
+  #   configuration {
+  #     modi: "drun,run,window,ssh";
+  #     font: "JetBrains Mono 12";
+  #     terminal: "xterm";
+  #     drun-display-format: "{name}";
+  #     location: 0;
+  #     disable-history: false;
+  #     hide-scrollbar: true;
+  #     display-drun: " Apps ";
+  #     display-run: " Run ";
+  #     display-window: " Windows ";
+  #     display-ssh: " SSH ";
+  #     sidebar-mode: true;
+  #   }
 
-    @theme "Arc-Dark"
+  #   @theme "Arc-Dark"
 
-    element-text, element-icon {
-      background-color: inherit;
-      text-color:       inherit;
-    }
+  #   element-text, element-icon {
+  #     background-color: inherit;
+  #     text-color:       inherit;
+  #   }
 
-    window {
-      height: 360px;
-      border: 3px;
-      border-color: @border-col;
-      background-color: @bg-col;
-      border-radius: 12px;
-    }
+  #   window {
+  #     height: 360px;
+  #     border: 3px;
+  #     border-color: @border-col;
+  #     background-color: @bg-col;
+  #     border-radius: 12px;
+  #   }
 
-    mainbox {
-      background-color: @bg-col;
-    }
+  #   mainbox {
+  #     background-color: @bg-col;
+  #   }
 
-    inputbar {
-      children: [prompt,entry];
-      background-color: @bg-col;
-      border-radius: 5px;
-      padding: 2px;
-    }
-  '';
+  #   inputbar {
+  #     children: [prompt,entry];
+  #     background-color: @bg-col;
+  #     border-radius: 5px;
+  #     padding: 2px;
+  #   }
+  # '';
 
   # Home Manager needs a bit of information about you and the paths it should manage
   home.stateVersion = "25.11"; # Please set to the version you installed
