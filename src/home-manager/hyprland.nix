@@ -1,10 +1,39 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig ? {}, ... }:
 
+let
+  # Access the VM detection from the system config
+  isVM = osConfig.system.isVM or false;
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true; # Important for proper systemd integration
     xwayland.enable = true; # Enable XWayland support
+    
+    # Conditional configuration based on VM detection
+    extraConfig = if isVM then ''
+      # VM-specific monitor configuration
+      monitor=,preferred,auto,1
+      monitor=Virtual-1,1920x1080@60,0x0,1
+
+      # VM environment variables
+      env = LIBGL_ALWAYS_SOFTWARE,1
+      env = WLR_NO_HARDWARE_CURSORS,1
+      env = WLR_RENDERER,pixman
+
+      # Execute your apps at launch
+      exec-once = waybar
+      exec-once = hyprpaper
+    '' else ''
+      # Hardware-specific monitor configuration
+      # Uncomment and adjust for your actual hardware
+      # monitor=DP-1,2560x1440@144,0x0,1
+      
+      # Execute your apps at launch
+      exec-once = waybar
+      exec-once = hyprpaper
+    '';
+    
     settings = {
       general = {
         gaps_in = 5;
@@ -102,22 +131,17 @@
         "SUPER_SHIFT,0,movetoworkspace,10"
       ];
     };
-
-    # Make sure Hyprland starts some essential components
-    extraConfig = ''
-      # Monitor configuration for VM
-      monitor=,preferred,auto,1
-
-      # Execute your apps at launch
-      exec-once = waybar
-      exec-once = hyprpaper
-    '';
   };
 
-  # Add hyprpaper configuration
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ${config.home.homeDirectory}/wallpapers/default.jpg
-    wallpaper = ,${config.home.homeDirectory}/wallpapers/default.jpg
-    ipc = off
-  '';
+  # Conditionally set up Hyprpaper based on VM status
+  home.file.".config/hypr/hyprpaper.conf".text = 
+    if isVM then ''
+      preload = ${config.home.homeDirectory}/wallpapers/default.jpg
+      wallpaper = ,${config.home.homeDirectory}/wallpapers/default.jpg
+      ipc = off
+    '' else ''
+      preload = ${config.home.homeDirectory}/wallpapers/default-hardware.jpg
+      wallpaper = ,${config.home.homeDirectory}/wallpapers/default-hardware.jpg
+      ipc = on
+    '';
 }
