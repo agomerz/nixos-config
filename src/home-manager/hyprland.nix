@@ -91,7 +91,9 @@ in
         "SUPER,M,exit,"
         "SUPER,E,exec,dolphin"
         "SUPER,Space,togglefloating,"
-        "SUPER,R,exec,wofi --show drun"
+        "SUPER,R,exec,rofi -show drun"  # Replace existing wofi binding
+        "ALT,space,exec,rofi -show drun"  # Alternative binding
+        "SUPER,Tab,exec,rofi -show window"  # Show window switcher
         "SUPER,P,pseudo,"
         "SUPER,F,fullscreen,1"
 

@@ -52,5 +52,10 @@
     adwaita-icon-theme
     swaylock
     swayidle
+
+    # For rofi-wayland
+    papirus-icon-theme  # Icon theme for Rofi
+    libnotify  # For notifications
+    xdg-utils  # For xdg-open
   ];
 }
