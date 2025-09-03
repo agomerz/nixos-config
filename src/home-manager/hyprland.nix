@@ -23,11 +23,12 @@
           passes = 1;
           new_optimizations = true;
         };
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
       };
+
+      drop_shadow = true;
+      shadow_range = 4;
+      shadow_render_power = 3;
+      "col.shadow" = "rgba(1a1a1aee)";
 
       animations = {
         enabled = true;
@@ -104,6 +105,9 @@
 
     # Make sure Hyprland starts some essential components
     extraConfig = ''
+      # Monitor configuration for VM
+      monitor=,preferred,auto,1
+
       # Execute your apps at launch
       exec-once = waybar
       exec-once = hyprpaper
