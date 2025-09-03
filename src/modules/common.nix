@@ -43,6 +43,7 @@
     wayland
     git
     vim
+    xterm
     # Add these packages
     xwayland
     libinput

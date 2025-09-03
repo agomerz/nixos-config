@@ -91,7 +91,7 @@ in
 
       # Example binds
       bind = [
-        "SUPER,Return,exec,kitty"
+        "SUPER,Return,exec,xterm"
         "SUPER,Q,killactive,"
         "SUPER,M,exit,"
         "SUPER,E,exec,dolphin"
