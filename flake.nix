@@ -23,14 +23,13 @@
           modules = [
             ./src/hosts/vm/configuration.nix
             ./src/modules/common.nix
-            ./src/modules/vm-detect.nix  # Add the VM detection module
-            # Add home-manager as a module
+            ./src/modules/vm-detect.nix
             home-manager.nixosModules.home-manager
             {
-              # Home Manager configuration with VM detection passed through
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit (config.system) isVM; };
+              # Pass a fixed isVM value instead of trying to access config.system
+              home-manager.extraSpecialArgs = { isVM = true; };
               home-manager.users.andy = import ./src/home-manager/home.nix;
             }
           ];
@@ -42,14 +41,13 @@
           modules = [
             ./src/hosts/metal/configuration.nix
             ./src/modules/common.nix
-            ./src/modules/vm-detect.nix  # Add the VM detection module
-            # Add home-manager as a module
+            ./src/modules/vm-detect.nix
             home-manager.nixosModules.home-manager
             {
-              # Home Manager configuration
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit (config.system) isVM; };
+              # Pass a fixed isVM value instead of trying to access config.system
+              home-manager.extraSpecialArgs = { isVM = false; };
               home-manager.users.andy = import ./src/home-manager/home.nix;
             }
           ];
