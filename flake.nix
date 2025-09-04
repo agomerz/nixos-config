@@ -43,12 +43,19 @@
             ./src/modules/common.nix
             ./src/modules/vm-detect.nix
             home-manager.nixosModules.home-manager
+            home-manager.nixosModules.home-manager
             {
+              nixpkgs.config.allowUnfree = true;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              # Pass a fixed isVM value instead of trying to access config.system
-              home-manager.extraSpecialArgs = { isVM = false; };
-              home-manager.users.andy = import ./src/home-manager/home.nix;
+            
+              # this is what lets your home.nix see `isVM`
+              home-manager.extraSpecialArgs = { inherit isVM; };
+            
+              home-manager.users.andy = {
+                # let HM import it (don’t `import` yourself)
+                imports = [ ./src/home-manager/home.nix ];
+              };
             }
           ];
         };
