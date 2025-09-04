@@ -43,9 +43,9 @@
             ./src/modules/common.nix
             ./src/modules/vm-detect.nix
             home-manager.nixosModules.home-manager
-            home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
+              home-manager.backupFileExtension = ".bak";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.andy = {
