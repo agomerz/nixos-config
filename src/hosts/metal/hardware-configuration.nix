@@ -36,6 +36,12 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-  hardware.nvidia.powerManagement.enable = true;
-  hardware.nvidia.open = false;
+  hardware.nvidia = {
+    powerManagement.enable = true;
+    open = false;
+    modesetting.enable = true;
+    prime = {
+      offload.enable = true;
+    };
+  };  
 }
