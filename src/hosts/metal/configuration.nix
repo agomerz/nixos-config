@@ -7,7 +7,6 @@
   # Basic system settings 
   boot.loader.systemd-boot.enable = true; # Enable systemd-boot
   boot.loader.efi.canTouchEfiVariables = true; # Required for EFI systems
-  networking.hostName = "neutron"; 
   time.timeZone = "UTC"; 
 
   # User configuration 
@@ -16,7 +15,6 @@
     extraGroups = [ "wheel" "networkmanager" ]; 
   }; 
 
-  networking.hostName = "neutron";
   hardware.nvidia = {
     modesetting.enable = true;
     prime = {
