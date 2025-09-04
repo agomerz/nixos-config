@@ -48,10 +48,6 @@
               nixpkgs.config.allowUnfree = true;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-            
-              # this is what lets your home.nix see `isVM`
-              home-manager.extraSpecialArgs = { inherit isVM; };
-            
               home-manager.users.andy = {
                 # let HM import it (don’t `import` yourself)
                 imports = [ ./src/home-manager/home.nix ];
