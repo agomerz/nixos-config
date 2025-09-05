@@ -40,6 +40,17 @@
     };
   };
 
+  home.file.".bashrc".text = ''
+    export EDITOR="nvim"
+    ns-rebuild (){
+      pushd ~/.config/nixos/nixos-config
+      sudo nixos-rebuild switch --flake .#neutron-metal
+      popd
+    }
+    alias vim="nvim"
+    fastfetch
+  '';
+
   # Add this to your existing home.nix configuration
   # home.file.".config/rofi/config.rasi".text = ''
   #   configuration {
