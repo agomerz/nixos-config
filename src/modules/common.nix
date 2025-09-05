@@ -68,5 +68,6 @@
     libnotify  # For notifications
     xdg-utils  # For xdg-open
     spotify
+    fastfetch
   ];
 }
