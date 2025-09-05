@@ -21,6 +21,8 @@
     git
     ghostscript
     firefox
+    htop
+    btop
   ];
 
   # Add rofi-wayland
@@ -41,6 +43,7 @@
   };
 
   home.file.".bashrc".text = ''
+    
     export EDITOR="nvim"
     ns-rebuild (){
       pushd ~/.config/nixos/nixos-config
@@ -49,6 +52,7 @@
     }
     alias vim="nvim"
     fastfetch
+    PS1="\[\e[0;32m\]\u@\h\[\e[m\]:\[\e[0;34m\]\w\[\e[m\]\n\[\e[0;36m\]▶\[\e[m\] "
   '';
 
   # Add this to your existing home.nix configuration
