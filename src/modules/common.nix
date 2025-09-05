@@ -69,5 +69,6 @@
     xdg-utils  # For xdg-open
     spotify
     fastfetch
+    pavucontrol
   ];
 }
