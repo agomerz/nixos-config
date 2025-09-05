@@ -15,6 +15,8 @@
   home.packages = with pkgs; [
     # Additional packages for the user
     hyprpaper
+    hyprcursor
+    rose-pine-hyprcursor
     kitty
     neovim
     vim
