@@ -11,7 +11,17 @@
   system.stateVersion = "25.11"; # Set to the NixOS version you're starting with
 
   # Enable SSH for remote access
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+      # Optional: Specify allowed ports (default is 22)
+      # ports = [ 22 ];
+      # Optional: Configure SSH server settings
+      settings = {
+        PasswordAuthentication = true;
+        PermitRootLogin = "prohibit-password";
+      #   # Add other settings as needed
+      };
+  };
 
   # User configuration 
   users.users.andy = { 
@@ -57,5 +67,6 @@
     papirus-icon-theme  # Icon theme for Rofi
     libnotify  # For notifications
     xdg-utils  # For xdg-open
+    spotify
   ];
 }
