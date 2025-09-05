@@ -72,6 +72,11 @@ in
         sensitivity = 0.0; # -1.0 - 1.0, 0 means no modification
       };
 
+      cursor = {
+        no_hardware_cursors = 1;
+	enable_hyprcursor = true;
+      };
+
       dwindle = {
         pseudotile = true;
         preserve_split = true;
@@ -131,14 +136,9 @@ in
   };
 
   # Conditionally set up Hyprpaper based on VM status
-  home.file.".config/hypr/hyprpaper.conf".text = 
-    if isVM then ''
+  home.file.".config/hypr/hyprpaper.conf".text = ''
       preload = ${config.home.homeDirectory}/wallpapers/default.jpg
       wallpaper = ,${config.home.homeDirectory}/wallpapers/default.jpg
       ipc = off
-    '' else ''
-      preload = ${config.home.homeDirectory}/wallpapers/default-hardware.jpg
-      wallpaper = ,${config.home.homeDirectory}/wallpapers/default-hardware.jpg
-      ipc = on
     '';
 }
